@@ -8,7 +8,6 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'img.magnific.com',
-        search: 'portrait-anime-character-doing-fitness-exercising',
       },
     ],
   },
