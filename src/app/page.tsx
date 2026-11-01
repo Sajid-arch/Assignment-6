@@ -1,7 +1,7 @@
 // import Image from "next/image";
 
-import Hero from "./components/Hero";
-import Workout from "./components/Workout";
+import Hero from "./components/homepage/Hero";
+import Workout from "./workout/page";
 
 export default function Home() {
   return (

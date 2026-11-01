@@ -4,6 +4,9 @@ import Image from 'next/image';
 import { GoClock,  } from "react-icons/go";
 import { FaFire } from "react-icons/fa";
 import { CiStar } from "react-icons/ci";
+import Link from 'next/link';
+
+
 
 
 
@@ -11,8 +14,7 @@ const WorkoutCard = ({ workoutData }: { workoutData: Idata }) => {
 
     
     return (
-
-
+      <Link href={`/workout/${workoutData.id}`} className="block">
 <div className="card bg-[#15171D] border-2 border-[#222630] rounded-2xl shadow-sm">
   <figure className="relative w-full h-auto aspect-video">
     <Image
@@ -54,6 +56,10 @@ const WorkoutCard = ({ workoutData }: { workoutData: Idata }) => {
     </div>
   </div>
 </div>
+      </Link>
+
+
+
     )
 };
 

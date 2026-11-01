@@ -9,7 +9,7 @@ import NavLinks from './NavLinks';
 
 const Navbar = () => {
     return (
-        <div className='bg-black border-b-2 border-b-gray-800 shadow-sm font-sans'>
+        <div className='bg-black border-b-2 px-5 border-b-gray-800 shadow-sm font-sans'>
             <div className="container mx-auto navbar">
                 <div className="navbar-start">
                     <div className="dropdown">
