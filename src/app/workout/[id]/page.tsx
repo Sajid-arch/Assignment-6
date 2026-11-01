@@ -1,3 +1,5 @@
+import AddPlanBtn from '@/app/components/ExerciseDetailsPage/AddPlanBtn';
+import SaveExercise from '@/app/components/ExerciseDetailsPage/SaveExercise';
 import Idata from '@/app/contentType';
 import Image from 'next/image';
 import React from 'react';
@@ -79,7 +81,13 @@ const WorkOutDetails = async ({params}: IWorkOutDetails) => {
     }
 
     </ol>
+
+    <div className="flex flex-row gap-5">
+    <AddPlanBtn></AddPlanBtn> 
+    <SaveExercise></SaveExercise>   
+    
             </div>
+    </div>
         </div>
     );
 };
