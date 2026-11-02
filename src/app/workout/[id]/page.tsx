@@ -83,7 +83,7 @@ const WorkOutDetails = async ({params}: IWorkOutDetails) => {
     </ol>
 
     <div className="flex flex-row gap-5">
-    <AddPlanBtn></AddPlanBtn> 
+    <AddPlanBtn planData={data} ></AddPlanBtn> 
     <SaveExercise></SaveExercise>   
     
             </div>

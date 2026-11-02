@@ -1,11 +1,18 @@
 'use client';
+import Idata from '@/app/contentType';
 import React, { createContext, ReactNode, useState } from 'react';
+interface IExerciseContext{
+    planExercises: Idata[];
+    setPlanExercises: React.Dispatch<React.SetStateAction<Idata[]>>;
+    saveExercise: Idata[];
+    setSaveExercise: React.Dispatch<React.SetStateAction<Idata[]>>;
+}
 
-const ExerciseContext = createContext({});
+export const ExerciseContext = createContext<IExerciseContext | null>(null);
 
 const ExerciseProvider = ({ children } : {children:ReactNode})  => {
-    const [planExercises, setPlanExercises] = useState([]);
-    const [saveExercise, setSaveExercise] = useState([]);
+    const [planExercises, setPlanExercises] = useState<Idata[]>([]);
+    const [saveExercise, setSaveExercise] = useState<Idata[]>([]);
 
     const commonData = {
         planExercises,

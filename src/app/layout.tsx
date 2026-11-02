@@ -30,11 +30,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${inter.variable} ${oswald.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans">
-        <Navbar></Navbar>
         <ExerciseProvider>
+        <Navbar></Navbar>
         {children}
-        </ExerciseProvider>
         <Footer></Footer>
+        </ExerciseProvider>
         </body>
     </html>
   );
