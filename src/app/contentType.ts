@@ -12,4 +12,5 @@ name: string;
 rating: number;
 reps: string;
 sets: number;
+completed?: boolean;
 }

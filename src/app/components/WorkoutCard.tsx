@@ -26,7 +26,7 @@ const WorkoutCard = ({ workoutData }: { workoutData: Idata }) => {
     />
   </figure>
   <div className="card-body">
-    <div className="flex flex-row justify-start items-center gap-2">
+    <div className="flex flex-wrap flex-row justify-start items-center gap-2">
       {
         workoutData.muscleGroups.map(muscleGroup => {
           return(
@@ -40,16 +40,16 @@ const WorkoutCard = ({ workoutData }: { workoutData: Idata }) => {
     </h2>
     <p className='text-[#9CA3AF] text-xs'>{workoutData.equipment}</p>
     <div className="divider m-0"></div>
-    <div className="flex justify-start items-center gap-4">
-      <div className="flex items-center gap-2">
+    <div className="flex flex-wrap justify-start items-center gap-x-4 gap-y-2">
+      <div className="flex items-center gap-1.5">
         <GoClock />
         <span className="text-[#9CA3AF] text-sm">{workoutData.duration} min</span>
       </div>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-1.5">
         <FaFire />
         <span className="text-[#9CA3AF] text-sm">{workoutData.caloriesBurned} kcal</span>
       </div>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-1.5">
         <CiStar />
         <span className="text-[#9CA3AF] text-sm">{workoutData.rating}</span>
       </div>

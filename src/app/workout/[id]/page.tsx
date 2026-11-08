@@ -17,8 +17,8 @@ const WorkOutDetails = async ({params}: IWorkOutDetails) => {
     const data:Idata = await res.json()
 
     return (
-        <div className='container mx-auto grid min-h-screen grid-cols-1  px-4 py-12 md:grid-cols-2'>
-            <div className="relative w-full max-w-150 aspect-4/5 overflow-hidden rounded-lg">
+        <div className='container mx-auto grid min-h-screen grid-cols-1 gap-8 px-4 py-8 sm:py-12 md:grid-cols-2 md:gap-10'>
+            <div className="relative mx-auto aspect-4/5 w-full max-w-150 overflow-hidden rounded-lg md:mx-0">
                 <Image
                     src={data.image.slice(0,-6)}
                     alt={data.name}
@@ -27,10 +27,10 @@ const WorkOutDetails = async ({params}: IWorkOutDetails) => {
                     sizes="(max-width: 768px) 100vw, 50vw"
                 ></Image>
             </div>
-            <div className="flex flex-col space-y-4 items-start justify-start">
-                <h1 className="text-4xl font-bold font-heading uppercase text-white">{data.name}</h1>
+            <div className="flex min-w-0 flex-col items-start justify-start space-y-4">
+                <h1 className="text-3xl font-bold font-heading uppercase text-white sm:text-4xl">{data.name}</h1>
                 <p className="text-[16px] text-[#9CA3AF]">{data.description}</p>
-                <div className="flex flex-row justify-start items-center gap-2 mb-10">
+                <div className="mb-4 flex flex-wrap flex-row justify-start items-center gap-2 sm:mb-10">
       {
         data.muscleGroups.map(muscleGroup => {
           return(
@@ -82,9 +82,9 @@ const WorkOutDetails = async ({params}: IWorkOutDetails) => {
 
     </ol>
 
-    <div className="flex flex-row gap-5">
+    <div className="flex w-full flex-col gap-3 sm:flex-row sm:gap-5">
     <AddPlanBtn planData={data} ></AddPlanBtn> 
-    <SaveExercise></SaveExercise>   
+    <SaveExercise planData={data}></SaveExercise>   
     
             </div>
     </div>
