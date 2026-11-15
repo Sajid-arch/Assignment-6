@@ -4,21 +4,18 @@ import { GoClock,  } from "react-icons/go";
 import { FaFire } from "react-icons/fa";
 import { CiStar } from "react-icons/ci";
 import { RxCrossCircled } from "react-icons/rx";
-import { ExerciseContext, exerciseMatchesSearch, sortExercises } from '@/context/ExerciseContext';
+import { ExerciseContext } from '@/context/ExerciseContext';
 import Image from 'next/image';
 import Idata from '@/app/contentType';
 import Link from 'next/link';
 
 const SaveListCard = () => {
-const {saveExercise, activeTab, setSaveExercise, sortBy, searchQuery} = useContext(ExerciseContext) as {
+const {saveExercise, activeTab, setSaveExercise} = useContext(ExerciseContext) as {
                     saveExercise: Idata[];
                     activeTab: 'plan' | 'saved'; 
                     setSaveExercise: React.Dispatch<React.SetStateAction<Idata[]>>;          
-                    sortBy: 'Duration' | 'Calories' | 'Rating';
-                    searchQuery: string;
                 };
-    const filteredExercises = sortExercises(saveExercise, sortBy)
-      .filter(exercise => exerciseMatchesSearch(exercise, searchQuery));
+
     const handleRemoveExercise = (exercise:Idata) =>{
               const restExercise = saveExercise.filter(item => item.id !== exercise.id)
               setSaveExercise(restExercise);
@@ -27,7 +24,7 @@ const {saveExercise, activeTab, setSaveExercise, sortBy, searchQuery} = useConte
     return (
         <div className='w-full'>
             {
-                    filteredExercises.length > 0 ? filteredExercises.map((exercise) => (
+                    saveExercise.length > 0 ? saveExercise.map((exercise) => (
                       <div key={exercise.id} className={`${activeTab === 'saved' ? 'block' : 'hidden'} mb-3 grid w-full grid-cols-1 gap-4 rounded-2xl border-2 border-[#232732] bg-[#14171E] p-3 sm:p-4 md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] md:items-center`}>
                         <div className='flex min-w-0 flex-row items-center justify-start gap-3 sm:gap-4'>
                           <div className='w-20 shrink-0 sm:w-28 md:w-1/4'>
@@ -71,7 +68,7 @@ const {saveExercise, activeTab, setSaveExercise, sortBy, searchQuery} = useConte
                           </div>
                         </div>
                       </div>
-                    )) : saveExercise.length > 0 && activeTab === 'saved' && searchQuery.trim() ? (
+                    )) : saveExercise.length > 0 && activeTab === 'saved'? (
                       <p className="py-6 text-center text-sm text-[#9CA3AF]" role="status">No saved exercises match your search.</p>
                     ) : null
                   }
