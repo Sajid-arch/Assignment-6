@@ -1,15 +1,49 @@
 'use client';
+import Idata from '@/app/contentType';
 import { ExerciseContext } from '@/context/ExerciseContext';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 
 
 const ListToggleButton = () => {
-    const {activeTab, setActiveTab, sortBy, setSortBy} = useContext(ExerciseContext) as {
+    const {activeTab, setActiveTab, sortBy, setSortBy, setSortedPlanExercises, setSortedSaveExercise, planExercises, saveExercise} = useContext(ExerciseContext) as {
             activeTab: 'plan' | 'saved';
             setActiveTab: React.Dispatch<React.SetStateAction<'plan' | 'saved'>>;            
             sortBy: 'Duration' | 'Calories' | 'Rating';
             setSortBy: React.Dispatch<React.SetStateAction<'Duration' | 'Calories' | 'Rating'>>;
+            setSortedPlanExercises: React.Dispatch<React.SetStateAction<Idata[]>>;
+            setSortedSaveExercise: React.Dispatch<React.SetStateAction<Idata[]>>;
+            planExercises: Idata[];
+            saveExercise: Idata[];
         };
+
+        useEffect(() => {
+        const sortedExercise = [...planExercises];
+
+        if (sortBy === 'Rating') {
+            sortedExercise.sort((a, b) => b.rating - a.rating);
+        } else if (sortBy === 'Duration') {
+            sortedExercise.sort((a, b) => b.duration - a.duration);
+        } else if (sortBy === 'Calories') {
+            sortedExercise.sort((a, b) => b.caloriesBurned - a.caloriesBurned);
+        }
+
+        setSortedPlanExercises(sortedExercise);
+    }, [sortBy, planExercises, setSortedPlanExercises]);
+
+        useEffect(() => {
+        const sortedExercise = [...saveExercise];
+
+        if (sortBy === 'Rating') {
+            sortedExercise.sort((a, b) => b.rating - a.rating);
+        } else if (sortBy === 'Duration') {
+            sortedExercise.sort((a, b) => b.duration - a.duration);
+        } else if (sortBy === 'Calories') {
+            sortedExercise.sort((a, b) => b.caloriesBurned - a.caloriesBurned);
+        }
+
+        setSortedSaveExercise(sortedExercise);
+    }, [sortBy, saveExercise, setSortedSaveExercise]);
+
     return (
         <div className="mb-4 flex w-full flex-col items-stretch justify-between gap-3 sm:flex-row sm:flex-wrap sm:items-center">
     <div className="flex w-full flex-row items-center justify-center gap-1 rounded-xl border-2 border-[#232732] bg-[#151921] p-1 text-xs sm:w-auto sm:gap-2">

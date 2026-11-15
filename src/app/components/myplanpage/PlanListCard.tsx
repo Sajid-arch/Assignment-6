@@ -12,8 +12,8 @@ import Link from 'next/link';
 import { Bounce, toast } from 'react-toastify';
 
 const PlanListCard = () => {
-            const {planExercises, activeTab, setPlanExercises} = useContext(ExerciseContext) as {
-                    planExercises: Idata[];
+            const {sortedPlanExercises, activeTab, setPlanExercises} = useContext(ExerciseContext) as {
+                    sortedPlanExercises: Idata[];
                     activeTab: 'plan' | 'saved'; 
                     setPlanExercises: React.Dispatch<React.SetStateAction<Idata[]>>;          
                 };
@@ -21,11 +21,11 @@ const PlanListCard = () => {
                 
 
     const handleRemoveExercise = (exercise:Idata) =>{
-              const restExercise = planExercises.filter(item => item.id !== exercise.id)
+              const restExercise = sortedPlanExercises.filter(item => item.id !== exercise.id)
               setPlanExercises(restExercise);
             }
             const handleCompleted = (exercise:Idata) => {
-              const restExercise = planExercises.map(item => {
+              const restExercise = sortedPlanExercises.map(item => {
                 if(item.id === exercise.id){
                   return {...item, completed: true};
                 }
@@ -47,7 +47,7 @@ const PlanListCard = () => {
     return (
         <div className='w-full'>
             {
-                    planExercises.length > 0 ? planExercises.map((exercise) => (
+                    sortedPlanExercises.length > 0 ? sortedPlanExercises.map((exercise) => (
                       <div key={exercise.id} className={`${activeTab === 'plan' ? 'block' : 'hidden'} mb-3 grid w-full grid-cols-1 gap-4 rounded-2xl border-2 border-[#232732] bg-[#14171E] p-3 sm:p-4 md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] md:items-center`}>
                         <div className='flex min-w-0 flex-row items-center justify-start gap-3 sm:gap-4'>
                           <div className='w-20 shrink-0 sm:w-28 md:w-1/4'>
@@ -92,7 +92,7 @@ const PlanListCard = () => {
                           </div>
                         </div>
                       </div>
-                    )) : planExercises.length > 0 && activeTab === 'plan' ? (
+                    )) : sortedPlanExercises.length > 0 && activeTab === 'plan' ? (
                       <p className="py-6 text-center text-sm text-[#9CA3AF]" role="status">No plan exercises match your search.</p>
                     ) : null
                   }

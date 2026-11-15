@@ -10,21 +10,21 @@ import Idata from '@/app/contentType';
 import Link from 'next/link';
 
 const SaveListCard = () => {
-const {saveExercise, activeTab, setSaveExercise} = useContext(ExerciseContext) as {
-                    saveExercise: Idata[];
+const {sortedSaveExercise, activeTab, setSaveExercise} = useContext(ExerciseContext) as {
+                    sortedSaveExercise: Idata[];
                     activeTab: 'plan' | 'saved'; 
                     setSaveExercise: React.Dispatch<React.SetStateAction<Idata[]>>;          
                 };
 
     const handleRemoveExercise = (exercise:Idata) =>{
-              const restExercise = saveExercise.filter(item => item.id !== exercise.id)
+              const restExercise = sortedSaveExercise.filter(item => item.id !== exercise.id)
               setSaveExercise(restExercise);
             }
 
     return (
         <div className='w-full'>
             {
-                    saveExercise.length > 0 ? saveExercise.map((exercise) => (
+                    sortedSaveExercise.length > 0 ? sortedSaveExercise.map((exercise) => (
                       <div key={exercise.id} className={`${activeTab === 'saved' ? 'block' : 'hidden'} mb-3 grid w-full grid-cols-1 gap-4 rounded-2xl border-2 border-[#232732] bg-[#14171E] p-3 sm:p-4 md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] md:items-center`}>
                         <div className='flex min-w-0 flex-row items-center justify-start gap-3 sm:gap-4'>
                           <div className='w-20 shrink-0 sm:w-28 md:w-1/4'>
@@ -68,7 +68,7 @@ const {saveExercise, activeTab, setSaveExercise} = useContext(ExerciseContext) a
                           </div>
                         </div>
                       </div>
-                    )) : saveExercise.length > 0 && activeTab === 'saved'? (
+                    )) : sortedSaveExercise.length > 0 && activeTab === 'saved'? (
                       <p className="py-6 text-center text-sm text-[#9CA3AF]" role="status">No saved exercises match your search.</p>
                     ) : null
                   }
